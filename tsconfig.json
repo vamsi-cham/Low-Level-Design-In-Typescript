@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6",                          // Output ES6-compatible JS
+    "module": "commonjs",                     // Node.js style modules
+    "rootDir": "./src",                       // Where your .ts files live
+    "outDir": "./dist",                       // Where compiled .js files go
+    "strict": true,                           // Enable all strict type checks
+    "esModuleInterop": true,                  // For default imports from CommonJS
+    "forceConsistentCasingInFileNames": true, // Helps on case-sensitive file systems
+    "skipLibCheck": true                      // Skip checking .d.ts files in node_modules
+  },
+  "include": ["src"],     // Include only src folder
+  "exclude": ["node_modules", "dist"], // Exclude compiled and dependency folders
+}
