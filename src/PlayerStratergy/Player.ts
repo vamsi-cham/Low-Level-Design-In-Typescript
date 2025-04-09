@@ -1,11 +1,9 @@
-export class Player{
-  public id: number;
-  public currentPosition: number;
-  public isBot: number;
+import { Cell } from "../Board/Cell";
 
-  constructor(isBot: number = 0){
-    this.id = Math.floor(Math.random() * 90000) + 10000;
-    this.currentPosition = -1;
-    this.isBot = isBot;
-  }
+export interface Player{
+  id: number;
+  currentPosition: number;
+  isBot: boolean;
+
+  go(board: Cell[][]):void;
 }

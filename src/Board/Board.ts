@@ -1,5 +1,5 @@
+import { generateBoard } from "../helper/generateBoard";
 import { Cell } from "./Cell";
-import { GenerateBoard } from "./GenerateBoard";
 
 export class Board{
   public board: Cell[][] =[];
@@ -13,9 +13,8 @@ export class Board{
     snakesCount: number,
     laddersCount: number
   }){
-    const board = new GenerateBoard();
 
-    this.board = board.generateBoard(size, snakesCount, laddersCount);
+    this.board = generateBoard(size, snakesCount, laddersCount);
   }
 
   getBoard(){

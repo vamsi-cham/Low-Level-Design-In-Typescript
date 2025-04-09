@@ -1,10 +1,11 @@
 import { Game } from "./Game";
 
 const snakeAndLadder = new Game({
-  playersCount: 3,
-  diceCount: 2,
-  boardSize: 10,
-  snakesCount: 11
+  playersCount: 2,
+  // diceCount: 2,
+  boardSize: 6,
+  // snakesCount: 1,
+  botsCount:1,
 });
 
 snakeAndLadder.setGame();
