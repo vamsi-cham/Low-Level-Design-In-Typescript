@@ -1,12 +1,16 @@
-import { Game } from "./Game";
+import { VendingMachine } from "./VendingMachine/VendingMachine";
 
-const snakeAndLadder = new Game({
-  playersCount: 2,
-  // diceCount: 2,
-  boardSize: 6,
-  // snakesCount: 1,
-  botsCount:1,
-});
+const vendingMachine = new VendingMachine();
 
-snakeAndLadder.setGame();
-snakeAndLadder.startGame();
+// vendingMachine.machineState.addCoin(5);
+vendingMachine.machineState.clickInsertCoinButton();
+// vendingMachine.machineState.clickInsertCoinButton();
+vendingMachine.machineState.addCoin(5);
+vendingMachine.machineState.clickChooseProductButton();
+//vendingMachine.machineState.clickInsertCoinButton();
+// vendingMachine.machineState.cancelOperation();
+vendingMachine.machineState.enterCode(2);
+//vendingMachine.machineState.cancelOperation();
+vendingMachine.machineState.clickDispenseButton();
+vendingMachine.machineState.dispenseItem();
+vendingMachine.machineState.clickInsertCoinButton();
