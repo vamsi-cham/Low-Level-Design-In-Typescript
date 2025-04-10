@@ -1,16 +1,14 @@
-import { VendingMachine } from "./VendingMachine/VendingMachine";
+import { FiveHundredWithdrawal } from "./CashWithdrawalProcessor/FiveHundredWithdrawal";
+import { OneHundredWithdrawal } from "./CashWithdrawalProcessor/OneHundredWithdrawal";
+import { TwoThousandWithdrawal } from "./CashWithdrawalProcessor/TwoThousandWithdrawal";
 
-const vendingMachine = new VendingMachine();
+const twothousandProcessor = new TwoThousandWithdrawal(2);
+const fiveHundredProcessor = new FiveHundredWithdrawal(4);
+const oneHundredProcessor = new OneHundredWithdrawal(5);
 
-// vendingMachine.machineState.addCoin(5);
-vendingMachine.machineState.clickInsertCoinButton();
-// vendingMachine.machineState.clickInsertCoinButton();
-vendingMachine.machineState.addCoin(5);
-vendingMachine.machineState.clickChooseProductButton();
-//vendingMachine.machineState.clickInsertCoinButton();
-// vendingMachine.machineState.cancelOperation();
-vendingMachine.machineState.enterCode(2);
-//vendingMachine.machineState.cancelOperation();
-vendingMachine.machineState.clickDispenseButton();
-vendingMachine.machineState.dispenseItem();
-vendingMachine.machineState.clickInsertCoinButton();
+twothousandProcessor.setNextProcessor(fiveHundredProcessor);
+fiveHundredProcessor.setNextProcessor(oneHundredProcessor);
+
+twothousandProcessor.withdraw(4800)
+twothousandProcessor.withdraw(100)
+twothousandProcessor.withdraw(3000)
