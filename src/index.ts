@@ -1,14 +1,17 @@
-import { FiveHundredWithdrawal } from "./CashWithdrawalProcessor/FiveHundredWithdrawal";
-import { OneHundredWithdrawal } from "./CashWithdrawalProcessor/OneHundredWithdrawal";
-import { TwoThousandWithdrawal } from "./CashWithdrawalProcessor/TwoThousandWithdrawal";
+import { Directory } from "./FileSystem/Directory";
+import { File } from "./FileSystem/File";
 
-const twothousandProcessor = new TwoThousandWithdrawal(2);
-const fiveHundredProcessor = new FiveHundredWithdrawal(4);
-const oneHundredProcessor = new OneHundredWithdrawal(5);
+const movies = new Directory('Movies');
 
-twothousandProcessor.setNextProcessor(fiveHundredProcessor);
-fiveHundredProcessor.setNextProcessor(oneHundredProcessor);
+const movie1 = new File('Movie 1');
+const movie2 = new File('Movie 2');
+const movie3 = new File('Movie 3');
+const movie4 = new File('Movie 4');
 
-twothousandProcessor.withdraw(4800)
-twothousandProcessor.withdraw(100)
-twothousandProcessor.withdraw(3000)
+const comedyMovies = new Directory('Comedy Movies');
+
+movies.addFilesOrDirectories(movie1,movie2, comedyMovies);
+comedyMovies.addFilesOrDirectories(movie3,movie4);
+
+movies.ls();
+//comedyMovies.ls();
