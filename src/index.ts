@@ -1,28 +1,21 @@
-import { PurchaseService } from "./Purchase/PurchaseItem";
-import { OnboardUser } from "./User/OnboardUser";
-import { User } from "./User/User";
+import { DeliveryApp } from "./Delivery/DeliveryApp";
+import { DeliveryService } from "./Delivery/DeliveryService";
 
-const onboardingUser = OnboardUser.getOnboardingInstance();
+const app = new DeliveryApp();
 
-onboardingUser.addUser('vamsi');
+app.createOrder('Order A', '560087')
 
-const vamsi: User = onboardingUser.getUser('vamsi');
+app.createOrder('Order B', '560088')
 
-vamsi.getUserStats();
+app.createOrder('Order C', '560089')
 
-PurchaseService.processPurchase(vamsi, 800,0)
+app.createOrder('Order D', '560087')
 
-PurchaseService.processPurchase(vamsi, 4200,100)
+app.createAgent('Agent A', ['560087'])
 
-PurchaseService.processPurchase(vamsi, 4200,0)
+app.createAgent('Agent B', ['560088'])
 
-PurchaseService.processPurchase(vamsi, 3000,300)
+app.createAgent('Agent C', ['560089'])
 
-PurchaseService.processPurchase(vamsi, 5000,0)
-
-PurchaseService.processPurchase(vamsi, 5000,1200)
-
-vamsi.getUserStats();
-
-
+DeliveryService.processOrders(app.getOrders(), app.getAgents());
 
