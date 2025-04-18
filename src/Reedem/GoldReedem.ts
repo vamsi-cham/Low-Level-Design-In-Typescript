@@ -5,7 +5,7 @@ export class GoldReedem implements ReedemStratergy{
 
     if(reedemPoints > 1000 || reedemPoints > (0.15*amount)) {
       console.log('\nPurchase Failed. reedem points not eligible')
-      return totalPoints;
+      return -1;
     }
 
     return totalPoints-reedemPoints+ (0.15*(amount-reedemPoints));
