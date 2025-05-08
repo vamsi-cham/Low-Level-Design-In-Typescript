@@ -1,28 +1,37 @@
-import { PurchaseService } from "./Purchase/PurchaseItem";
-import { OnboardUser } from "./User/OnboardUser";
-import { User } from "./User/User";
-
-const onboardingUser = OnboardUser.getOnboardingInstance();
-
-onboardingUser.addUser('vamsi');
-
-const vamsi: User = onboardingUser.getUser('vamsi');
-
-vamsi.getUserStats();
-
-PurchaseService.processPurchase(vamsi, 800,0)
-
-PurchaseService.processPurchase(vamsi, 4200,100)
-
-PurchaseService.processPurchase(vamsi, 4200,0)
-
-PurchaseService.processPurchase(vamsi, 3000,300)
-
-PurchaseService.processPurchase(vamsi, 5000,0)
-
-PurchaseService.processPurchase(vamsi, 5000,1200)
-
-vamsi.getUserStats();
+import { OrderManager } from "./Order/OrderManager";
+import { FirstItemStrategy } from "./PickRestaurant/FirstItemStrategy";
+import { Item } from "./Restaurant/Item";
+import { Menu } from "./Restaurant/Menu";
+import { RestaurantManager } from "./Restaurant/RestaurantManager";
 
 
+const restaurantManager =  new RestaurantManager();
 
+const orderManager =  new OrderManager(restaurantManager, new FirstItemStrategy(restaurantManager));
+
+restaurantManager.onboardRestaurant('rest1', 10, new Menu([new Item('biryani', 100)]));
+
+// restaurantManager.updatePrice('rest1', 'paneer', 50);
+
+restaurantManager.onboardRestaurant('rest2', 10, new Menu([]));
+
+restaurantManager.updatePrice('rest2', 'paneer', 45);
+
+restaurantManager.updatePrice('rest1', 'biryani', 90);
+
+restaurantManager.updatePrice('rest2', 'biryani', 99);
+
+orderManager.placeOrder('order1', 'biryani');
+
+orderManager.placeOrder('order2', 'paneer', 'biryani');
+
+orderManager.getAllOrders();
+
+orderManager.dispatchOrder('order1');
+orderManager.getDispatchedOrders()
+
+orderManager.placeOrder('order3', 'chicken');
+
+orderManager.getAllOrders();
+
+restaurantManager.getRestaurantServedItems('rest1')
