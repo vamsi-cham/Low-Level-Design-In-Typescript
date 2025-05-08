@@ -1,5 +1,7 @@
+import { PickerAlgo } from "./Enum/PickerAlgo";
 import { OrderManager } from "./Order/OrderManager";
 import { FirstItemStrategy } from "./PickRestaurant/FirstItemStrategy";
+import { PickRestaurantFactory } from "./PickRestaurant/PickRestaurantFactory";
 import { Item } from "./Restaurant/Item";
 import { Menu } from "./Restaurant/Menu";
 import { RestaurantManager } from "./Restaurant/RestaurantManager";
@@ -7,7 +9,11 @@ import { RestaurantManager } from "./Restaurant/RestaurantManager";
 
 const restaurantManager =  new RestaurantManager();
 
-const orderManager =  new OrderManager(restaurantManager, new FirstItemStrategy(restaurantManager));
+const pickRestaurantFactory = new PickRestaurantFactory(restaurantManager)
+
+const pickRestaurantStrategy = pickRestaurantFactory.pickingAlgo(PickerAlgo.FIRST_ITEM)
+
+const orderManager =  new OrderManager(restaurantManager, pickRestaurantStrategy);
 
 restaurantManager.onboardRestaurant('rest1', 10, new Menu([new Item('biryani', 100)]));
 

@@ -2,6 +2,7 @@ import { PickerAlgo } from "../Enum/PickerAlgo";
 import { RestaurantManager } from "../Restaurant/RestaurantManager";
 import { FirstItemStrategy } from "./FirstItemStrategy";
 import { LowPriceStrategy } from "./LowPriceStrategy";
+import { PickRestaurantStrategy } from "./PickRestaurantStrategy";
 
 export class PickRestaurantFactory{
   public restaurantManager: RestaurantManager;
@@ -10,14 +11,14 @@ export class PickRestaurantFactory{
         this.restaurantManager = restaurantManager;
   }
 
-  pickingAlgo(algo: PickerAlgo){
+  pickingAlgo(algo: PickerAlgo): PickRestaurantStrategy{
     switch (algo) {
       case PickerAlgo.LOW_PRICE:
         return new LowPriceStrategy(this.restaurantManager);
       case PickerAlgo.FIRST_ITEM:
         return new FirstItemStrategy(this.restaurantManager);
       default:
-        break;
+        throw Error('Not found')
     }
   }
 }
