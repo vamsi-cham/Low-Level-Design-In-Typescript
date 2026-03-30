@@ -1,0 +1,6 @@
+export enum TaskStatus {
+  QUEUED = "QUEUED",
+  ASSIGNED = "ASSIGNED",
+  COMPLETED = "COMPLETED",
+  CANCELLED = "CANCELLED"
+}
